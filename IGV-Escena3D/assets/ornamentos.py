@@ -36,10 +36,18 @@ def antorcha_frontal(x, y):
 
 def texto_stroke_negrita(texto):
     """
-    Texto vectorial más visible que el bitmap.
-    Se dibuja varias veces con pequeños desplazamientos para simular negrita.
+    Texto vectorial más grueso.
     """
-    for dx, dy in [(0, 0), (1.2, 0), (0, 1.2)]:
+    offsets = [
+        (0, 0),
+        (1.5, 0),
+        (0, 1.5),
+        (1.5, 1.5),
+        (3, 0),
+        (0, 3)
+    ]
+
+    for dx, dy in offsets:
         glPushMatrix()
         glTranslatef(dx, dy, 0)
         for c in texto:
@@ -49,20 +57,21 @@ def texto_stroke_negrita(texto):
 
 def logo_tecnocasa_torre():
     """
-    Logo TECNOCASA en lo alto de la torre:
-    fondo blanco, texto verde, un poco más ancho que la torre.
+    Logo TECNOCASA más grande y legible.
     """
     glPushMatrix()
 
-    # Placa blanca: un poco más ancha que la torre central (40)
-    glTranslatef(-5, 67, 42.8)
-    solid_ortho(50, 9, 1, [grey_1])
+    # Placa blanca más ancha y un poco más alta
+    glTranslatef(-18, 60, 43)
+    solid_ortho(78, 16, 1, [grey_1])
 
-    # Texto verde encima de la placa
-    glTranslatef(5, 1.8, 1.4)
+    # Texto verde
+    glTranslatef(5, 4, 2)
     glColor3f(0.0, 0.45, 0.18)
-    glLineWidth(2.5)
-    glScalef(0.018, 0.018, 0.018)
+    glLineWidth(4.0)
+
+    # Más grande
+    glScalef(0.060, 0.060, 0.060)
 
     texto_stroke_negrita("TECNOCASA")
 

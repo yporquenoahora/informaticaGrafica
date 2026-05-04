@@ -30,28 +30,43 @@ def init_gl():
 def draw_scene():
     
     width_grass = 110
-    tile = 10
-
+    tile = 5
+    altura_terreno = tile 
+    
     # Dibujar terreno pixelado con varios tonos
     glPushMatrix()
 
     for x in range(-width_grass, width_grass, tile):
         for z in range(-width_grass, width_grass, tile):
 
-            selector = (x // tile + z // tile) % 4
+            selector = ((x // tile) * 3 + (z // tile) * 5) % 5
 
             if selector == 0:
-                color = [draw.green_3]
+                color_cesped = [draw.green_3]
             elif selector == 1:
-                color = [draw.green_4]
+                color_cesped = [draw.green_4]
             elif selector == 2:
-                color = [draw.green_5]
+                color_cesped = [draw.green_5]
+            elif selector == 3:
+                color_cesped = [draw.grey_1]
             else:
-                color = [draw.grey_1]
+                color_cesped = [draw.green_2]
 
+            if ((x // tile) + (z // tile)) % 2 == 0:
+                color_tierra = [draw.brown_5]
+            else:
+                color_tierra = [draw.brown_4]
+
+            # Bloque de tierra: baja desde y=-tile hasta y=0
             glPushMatrix()
-            glTranslatef(x, -1, z)
-            draw.solid_ortho(tile, 1, tile, color)
+            glTranslatef(x, -altura_terreno, z)
+            draw.solid_ortho(tile, altura_terreno, tile, color_tierra)
+            glPopMatrix()
+
+            # Capa de césped encima
+            glPushMatrix()
+            glTranslatef(x, 0, z)
+            draw.solid_ortho(tile, 1, tile, color_cesped)
             glPopMatrix()
 
     glPopMatrix()
