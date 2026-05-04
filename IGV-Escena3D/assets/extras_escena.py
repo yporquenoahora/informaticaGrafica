@@ -17,7 +17,7 @@ MORADO      = (0.70, 0.30, 0.85)
 def bloque(x, y, z, ancho, alto, fondo, color):
     glPushMatrix()
     glTranslatef(x, y, z)
-    solid_ortho(ancho, alto, fondo, [color])
+    solid_ortho(int(round(ancho)), int(round(alto)), int(round(fondo)), [color])
     glPopMatrix()
 
 
@@ -34,7 +34,7 @@ def dragoncito_con_corbata():
     bloque(9, 5, 0, 7, 5, 6, AZUL_MEDIO)
 
     # Hocico
-    bloque(15, 5.5, 1.5, 4, 2.5, 3, AZUL_CLARO)
+    bloque(15, 5, 1, 4, 3, 3, AZUL_CLARO)
 
     # Ojos
     bloque(15.8, 8, 4.8, 1, 1, 1, black_5)
