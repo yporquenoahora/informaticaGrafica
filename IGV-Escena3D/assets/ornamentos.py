@@ -66,12 +66,12 @@ def logo_tecnocasa_torre():
     solid_ortho(78, 16, 1, [grey_1])
 
     # Texto verde
-    glTranslatef(5, 4, 2)
+    glTranslatef(4, 4, 2)
     glColor3f(0.0, 0.45, 0.18)
     glLineWidth(4.0)
 
     # Más grande
-    glScalef(0.060, 0.060, 0.060)
+    glScalef(0.10, 0.10, 1.00)
 
     texto_stroke_negrita("TECNOCASA")
 

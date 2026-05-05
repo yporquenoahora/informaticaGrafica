@@ -217,3 +217,15 @@ def viewport_ortho_top(xMin, xMax, yMin, yMax, dNear, dFar):
     # Dibujo de una etiqueta
     #glColor3fv([1,0,0])
     #igv_utils.draw_text_3d("VISTA PLANTA", 1.0, 0.0, 1.0)
+
+def viewport_perspective_sym_local(widthWindow, heightWindow):
+    glMatrixMode(GL_PROJECTION)
+    glLoadIdentity()
+    gluPerspective(45.0, widthWindow / heightWindow, 1.0, 600.0)
+    glMatrixMode(GL_MODELVIEW)
+    glLoadIdentity()
+    gluLookAt(
+        330, 230, 330,   # posición de la cámara: más lejos
+        0, 40, 0,        # punto al que mira
+        0, 1, 0     
+    )

@@ -27,60 +27,74 @@ def init_gl():
 
     glEnable(GL_DEPTH_TEST)                        # HABILITA COMPROBACIÓN DE PROFUNDIDAD EN EL DIBUJO           
 
-def draw_scene():
-    
+
+def draw_ground():
     width_grass = 110
-    tile = 5
-    altura_terreno = tile 
-    
-    # Dibujar terreno pixelado con varios tonos
+    tile = 2
+
+    palette = [
+        draw.green_2,
+        draw.green_3,
+        draw.green_4,
+        draw.green_5,
+        draw.grey_1
+    ]
+
     glPushMatrix()
 
     for x in range(-width_grass, width_grass, tile):
         for z in range(-width_grass, width_grass, tile):
 
-            selector = ((x // tile) * 3 + (z // tile) * 5) % 5
+            # Patrón pseudoaleatorio estable, no aleatorio real
+            selector = abs((x * 17 + z * 31 + x * z * 7)) % len(palette)
+            color_cesped = [palette[selector]]
 
-            if selector == 0:
-                color_cesped = [draw.green_3]
-            elif selector == 1:
-                color_cesped = [draw.green_4]
-            elif selector == 2:
-                color_cesped = [draw.green_5]
-            elif selector == 3:
-                color_cesped = [draw.grey_1]
-            else:
-                color_cesped = [draw.green_2]
-
-            if ((x // tile) + (z // tile)) % 2 == 0:
-                color_tierra = [draw.brown_5]
-            else:
-                color_tierra = [draw.brown_4]
-
-            # Bloque de tierra: baja desde y=-tile hasta y=0
             glPushMatrix()
-            glTranslatef(x, -altura_terreno, z)
-            draw.solid_ortho(tile, altura_terreno, tile, color_tierra)
-            glPopMatrix()
-
-            # Capa de césped encima
-            glPushMatrix()
-            glTranslatef(x, 0, z)
-            draw.solid_ortho(tile, 1, tile, color_cesped)
+            glTranslatef(x, -0.1, z)
+            draw.solid_face_xz(tile, tile, color_cesped)
             glPopMatrix()
 
     glPopMatrix()
+
+    # Borde marrón fino para que parezca una plataforma
+    borde_color = [draw.brown_4]
+
+    # Frontal
+    glPushMatrix()
+    glTranslatef(-width_grass, -2, width_grass - 1)
+    draw.solid_ortho(2 * width_grass, 2, 1, borde_color)
+    glPopMatrix()
+
+    # Trasero
+    glPushMatrix()
+    glTranslatef(-width_grass, -2, -width_grass)
+    draw.solid_ortho(2 * width_grass, 2, 1, borde_color)
+    glPopMatrix()
+
+    # Izquierdo
+    glPushMatrix()
+    glTranslatef(-width_grass, -2, -width_grass)
+    draw.solid_ortho(1, 2, 2 * width_grass, borde_color)
+    glPopMatrix()
+
+    # Derecho
+    glPushMatrix()
+    glTranslatef(width_grass - 1, -2, -width_grass)
+    draw.solid_ortho(1, 2, 2 * width_grass, borde_color)
+    glPopMatrix()
+
+def draw_scene():
+
+    draw_ground()
 
     # Dibujar torre central
-    
     glPushMatrix()
-    glTranslate(-40,0,-40)
-    #glScalef(1.5,1.5,1.5)
+    glTranslatef(-40, 0, -40)
     central_tower()
     glPopMatrix()
+
     glPushMatrix()
-    glTranslate(0,91,0)
-    glScalef(1.5,1.5,1.5)
+    glTranslatef(0, 91, 0)
     bandera()
     glPopMatrix()
 
@@ -93,19 +107,22 @@ def draw_scene():
     glPushMatrix()
     glTranslatef(-100, 0, -100)
     tower()
-    glTranslatef(0,51,0)
+    glTranslatef(0, 51, 0)
     bandera()
+
     glTranslatef(200, -51, 0)
     tower()
-    glTranslatef(0,51,0)
+    glTranslatef(0, 51, 0)
     bandera()
+
     glTranslatef(0, -51, 200)
     tower()
-    glTranslatef(0,51,0)
+    glTranslatef(0, 51, 0)
     bandera()
+
     glTranslatef(-200, -51, 0)
     tower()
-    glTranslatef(0,51,0)
+    glTranslatef(0, 51, 0)
     bandera()
     glPopMatrix()
 
@@ -114,7 +131,7 @@ def draw_scene():
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-    axes_length = 150
+    axes_length = 170
     xMin = yMin = zMin = -axes_length
     xMax = yMax = zMax = axes_length
     dNear = -zMax
@@ -127,11 +144,15 @@ def display():
     draw_scene()
 
     vp.set_viewport(2)
-    vp.viewport_ortho_top(xMin, xMax, yMin, yMax, dNear, dFar)
+    vp.viewport_ortho_left(xMin, xMax, yMin, yMax, dNear, dFar)
     draw_scene()
 
     vp.set_viewport(3)
     vp.viewport_ortho_front(xMin, xMax, yMin, yMax, dNear, dFar)
+    draw_scene()
+
+    vp.set_viewport(4)
+    vp.viewport_perspective_sym_local( widthWindow, heightWindow )
     draw_scene()
 
     glutSwapBuffers()

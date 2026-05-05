@@ -15,9 +15,18 @@ MORADO      = (0.70, 0.30, 0.85)
 
 
 def bloque(x, y, z, ancho, alto, fondo, color):
+    """
+    Dibuja un bloque ortoédrico construido con cubos unitarios.
+    Las dimensiones se convierten a enteros para evitar errores con range().
+    """
     glPushMatrix()
     glTranslatef(x, y, z)
-    solid_ortho(int(round(ancho)), int(round(alto)), int(round(fondo)), [color])
+
+    ancho = max(1, int(round(ancho)))
+    alto = max(1, int(round(alto)))
+    fondo = max(1, int(round(fondo)))
+
+    solid_ortho(ancho, alto, fondo, [color])
     glPopMatrix()
 
 
