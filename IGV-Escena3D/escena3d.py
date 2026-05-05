@@ -112,7 +112,6 @@ def draw_scene():
     # Dibujar torres en las esquinas
     # Torre esquina izquierda-frontal (-100, 0, -100) centrada
     glPushMatrix()
-    glTranslatef(-100, 0, -100)
     glTranslatef(-110, 0, -110)
     tower()
     glTranslatef(0, 51, 0)
