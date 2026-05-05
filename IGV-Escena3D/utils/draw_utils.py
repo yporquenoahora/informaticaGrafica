@@ -300,9 +300,9 @@ def solid_ortho(x_size, y_size, z_size, colors):
     glMatrixMode(GL_MODELVIEW)
     glPushMatrix()
     
-    for y in range(y_size):    
-        for x in range(x_size):
-            for z in range(z_size):
+    for y in range(int(y_size)):    
+        for x in range(int(x_size)):
+            for z in range(int(z_size)):
                 color = choice(colors) # Generar el color 
                 igv_utils.color_cube(color)
                 glTranslatef(0, 0, 1)

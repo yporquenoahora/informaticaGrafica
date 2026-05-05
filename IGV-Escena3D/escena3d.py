@@ -8,8 +8,11 @@ import utils.viewports as vp
 import assets.varios as varios
 from assets.tower import tower
 from assets.central_tower import central_tower, bandera
+from assets.muralla import muralla
+from assets.muralla_con_puerta import muralla_con_puerta
 
 import assets.extras_escena as extras
+import utils.colors as colors
 
 widthWindow = 1200
 heightWindow = 900
@@ -27,6 +30,10 @@ def init_gl():
 
     glEnable(GL_DEPTH_TEST)                        # HABILITA COMPROBACIÓN DE PROFUNDIDAD EN EL DIBUJO           
 
+def draw_scene():
+    
+    width_grass = 120
+    tile = 10
 
 def draw_ground():
     width_grass = 110
@@ -83,8 +90,7 @@ def draw_ground():
     draw.solid_ortho(1, 2, 2 * width_grass, borde_color)
     glPopMatrix()
 
-def draw_scene():
-
+def draw_scene():    
     draw_ground()
 
     # Dibujar torre central
@@ -104,8 +110,10 @@ def draw_scene():
     glPopMatrix()
 
     # Dibujar torres en las esquinas
+    # Torre esquina izquierda-frontal (-100, 0, -100) centrada
     glPushMatrix()
     glTranslatef(-100, 0, -100)
+    glTranslatef(-110, 0, -110)
     tower()
     glTranslatef(0, 51, 0)
     bandera()
@@ -125,8 +133,69 @@ def draw_scene():
     glTranslatef(0, 51, 0)
     bandera()
     glPopMatrix()
+    
+    # Torre esquina derecha-frontal centrada en (100, 0, -100)
+    glPushMatrix()
+    glTranslatef(90, 0, -110)  # 100 - 10 (mitad de 20)
+    tower()
+    glTranslatef(0, 51, 0)
+    bandera()
+    glPopMatrix()
+    
+    # Torre esquina derecha-trasera
+    glPushMatrix()
+    glTranslatef(90, 0, 90)
+    tower()
+    glTranslatef(0, 51, 0)
+    bandera()
+    glPopMatrix()
+    
+    # Torre esquina izquierda-trasera
+    glPushMatrix()
+    glTranslatef(-110, 0, 90)
+    tower()
+    glTranslatef(0, 51, 0)
+    bandera()
+    glPopMatrix()
+    
+    # Muralla - 4 tramos independientes
+    # Muralla frontal CON PUERTA
+    glPushMatrix()
+    glTranslatef(-90, 0, -110)
+    muralla_con_puerta()
+    glPopMatrix()
 
+    # Tramo trasero
+    glPushMatrix()
+    glTranslatef(-90, 0, 100)
+    muralla_con_puerta()
+    glPopMatrix()
 
+    # Tramo izquierdo
+    glPushMatrix()
+    glTranslatef(-110, 0, -90)
+    glRotatef(-90, 0, 1, 0)
+    muralla()
+    glPopMatrix()
+
+    # Tramo derecho
+    glPushMatrix()
+    glTranslatef(100, 0, -90)
+    glRotatef(-90, 0, 1, 0)
+    muralla()
+    glPopMatrix()
+
+    # Foso detrás de la muralla trasera
+    glPushMatrix()
+    glTranslatef(-90, -1, 115)
+    draw.solid_ortho(180, 3, 15, colors.water_range)
+    glPopMatrix()
+
+    # Puente de piedra sobre el foso (centrado en la puerta trasera)
+    glPushMatrix()
+    glTranslatef(70, -1, 115)
+    draw.solid_ortho(20, 5, 15, colors.stone_range)
+    glPopMatrix()
 
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
