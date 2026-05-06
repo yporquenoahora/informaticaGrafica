@@ -85,12 +85,12 @@ def bandera():
     solid_face_xz(9, 9, [grey_4])
 
     glTranslatef(3, 1, 3)
-    empty_pipe_y(3, 30, 3, [grey_4])
+    empty_pipe_y(3, 60, 3, [grey_4])
 
-    glTranslatef(0, 20, 0)
+    glTranslatef(0, 50, 0)
 
     glRotatef(90, 0, 0, 1)
-    pyramid2(6, [blue_3])
+    pyramid2(7, [blue_3])
 
     glPopMatrix()
     
