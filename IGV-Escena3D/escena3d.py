@@ -14,6 +14,8 @@ from assets.muralla_con_puerta import muralla_con_puerta
 import assets.extras_escena as extras
 import utils.colors as colors
 
+from assets.antorcha import antorcha
+
 widthWindow = 1200
 heightWindow = 900
 
@@ -186,16 +188,37 @@ def draw_scene():
 
     # Foso detrás de la muralla trasera
     glPushMatrix()
-    glTranslatef(-90, -1, 115)
-    draw.solid_ortho(180, 3, 15, colors.water_range)
+    glTranslatef(-90, -1, 105)
+    draw.solid_ortho(180, 2, 50, colors.water_range)
     glPopMatrix()
 
-    # Puente de piedra sobre el foso (centrado en la puerta trasera)
+    # Puente/pasarela sobre el foso (centrado en la puerta trasera)
     glPushMatrix()
-    glTranslatef(70, -1, 115)
-    draw.solid_ortho(20, 5, 15, colors.stone_range)
+    glTranslatef(-10, 2, 105)
+    draw.solid_ortho(20, 3, 50, colors.stone_range)
     glPopMatrix()
 
+    # Antorchas en el puente - lado izquierdo
+    glPushMatrix()
+    glTranslatef(-13, 2, 107)
+    antorcha()
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslatef(-13, 2, 148)
+    antorcha()
+    glPopMatrix()
+
+    # Antorchas en el puente - lado derecho
+    glPushMatrix()
+    glTranslatef(12, 2, 107)
+    antorcha()
+    glPopMatrix()
+
+    glPushMatrix()
+    glTranslatef(12, 2, 148)
+    antorcha()
+    glPopMatrix()
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
