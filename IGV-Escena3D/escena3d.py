@@ -102,7 +102,7 @@ def draw_scene():
     glPopMatrix()
 
     glPushMatrix()
-    glTranslatef(0, 91, 0)
+    glTranslatef(0, 86, 0)
     bandera()
     glPopMatrix()
 
@@ -117,22 +117,22 @@ def draw_scene():
     glTranslatef(-110, 0, -110)
     tower()
     glTranslatef(0, 51, 0)
-    bandera()
+    #bandera()
 
     glTranslatef(200, -51, 0)
     tower()
     glTranslatef(0, 51, 0)
-    bandera()
+    #bandera()
 
     glTranslatef(0, -51, 200)
     tower()
     glTranslatef(0, 51, 0)
-    bandera()
+    #bandera()
 
     glTranslatef(-200, -51, 0)
     tower()
     glTranslatef(0, 51, 0)
-    bandera()
+    #bandera()
     glPopMatrix()
     
     # Torre esquina derecha-frontal centrada en (100, 0, -100)
@@ -140,7 +140,7 @@ def draw_scene():
     glTranslatef(90, 0, -110)  # 100 - 10 (mitad de 20)
     tower()
     glTranslatef(0, 51, 0)
-    bandera()
+    #bandera()
     glPopMatrix()
     
     # Torre esquina derecha-trasera
@@ -148,7 +148,7 @@ def draw_scene():
     glTranslatef(90, 0, 90)
     tower()
     glTranslatef(0, 51, 0)
-    bandera()
+    #bandera()
     glPopMatrix()
     
     # Torre esquina izquierda-trasera
@@ -156,7 +156,7 @@ def draw_scene():
     glTranslatef(-110, 0, 90)
     tower()
     glTranslatef(0, 51, 0)
-    bandera()
+    #bandera()
     glPopMatrix()
     
     # Muralla - 4 tramos independientes
