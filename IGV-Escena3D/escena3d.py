@@ -177,17 +177,17 @@ def draw_scene():
     tower()
     glPopMatrix()
 
-     # Torre esquina Trasera-Izquierda
-    glPushMatrix()
-    glTranslatef(-120, 0, -115)
-    tower()
-    glPopMatrix()
-
     # Vigia humano
     glPushMatrix()
     glTranslatef(10, 5, 10)
     glScalef(0.8, 0.8, 0.8)
     vigia_humano()
+    glPopMatrix()
+
+     # Torre esquina Trasera-Izquierda
+    glPushMatrix()
+    glTranslatef(-120, 0, -115)
+    tower()
     glPopMatrix()
     
     # Muralla - 4 tramos independientes
