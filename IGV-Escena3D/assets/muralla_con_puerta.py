@@ -16,7 +16,7 @@ def muralla_con_puerta():
 
     ancho_puerta = 20
     alto_puerta = 20
-    mitad = 80
+    mitad = 90
 
     # Mitad izquierda
     glPushMatrix()

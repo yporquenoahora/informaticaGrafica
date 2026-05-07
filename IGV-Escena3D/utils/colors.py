@@ -19,6 +19,7 @@ grey_16 = [15/255,  16/255,  18/255]
 firebrick = [178/255, 34/255, 34/255]
 tomato_red = [255/255, 99/255, 71/255]  # Rojo tomate / Anaranjado
 coral_red = [240/255, 128/255, 128/255] # Rojo coral / Aterciopelado
+tower_base = [grey_5, grey_9, grey_10, grey_11]
 
 # Rangos suaves (transiciones pequeñas)
 grey_light_range        = [grey_1, grey_2, grey_3]

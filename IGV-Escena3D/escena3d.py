@@ -112,63 +112,40 @@ def draw_scene():
     glPopMatrix()
 
     # Dibujar torres en las esquinas
-    # Torre esquina izquierda-frontal (-100, 0, -100) centrada
-    glPushMatrix()
-    glTranslatef(-110, 0, -110)
-    tower()
-    glTranslatef(0, 51, 0)
-    #bandera()
-
-    glTranslatef(200, -51, 0)
-    tower()
-    glTranslatef(0, 51, 0)
-    #bandera()
-
-    glTranslatef(0, -51, 200)
-    tower()
-    glTranslatef(0, 51, 0)
-    #bandera()
-
-    glTranslatef(-200, -51, 0)
-    tower()
-    glTranslatef(0, 51, 0)
-    #bandera()
-    glPopMatrix()
-    
-    # Torre esquina derecha-frontal centrada en (100, 0, -100)
-    glPushMatrix()
-    glTranslatef(90, 0, -110)  # 100 - 10 (mitad de 20)
-    tower()
-    glTranslatef(0, 51, 0)
-    #bandera()
-    glPopMatrix()
-    
-    # Torre esquina derecha-trasera
+    # Torre esquina Frontal-Derecha
     glPushMatrix()
     glTranslatef(90, 0, 90)
     tower()
-    glTranslatef(0, 51, 0)
-    #bandera()
     glPopMatrix()
     
-    # Torre esquina izquierda-trasera
+    # Torre esquina Trasera-Derecha
     glPushMatrix()
-    glTranslatef(-110, 0, 90)
+    glTranslatef(90, 0, -115)  
     tower()
-    glTranslatef(0, 51, 0)
-    #bandera()
+    glPopMatrix()
+        
+    # Torre esquina Frontal-Izquierda
+    glPushMatrix()
+    glTranslatef(-120, 0, 90)
+    tower()
+    glPopMatrix()
+
+     # Torre esquina Trasera-Izquierda
+    glPushMatrix()
+    glTranslatef(-120, 0, -115)
+    tower()
     glPopMatrix()
     
     # Muralla - 4 tramos independientes
-    # Muralla frontal CON PUERTA
+    # Muralla trasera CON PUERTA
     glPushMatrix()
-    glTranslatef(-90, 0, -110)
+    glTranslatef(-100, 0, -110)
     muralla_con_puerta()
     glPopMatrix()
 
-    # Tramo trasero
+    # Tramo frontal
     glPushMatrix()
-    glTranslatef(-90, 0, 100)
+    glTranslatef(-100, 0, 90)
     muralla_con_puerta()
     glPopMatrix()
 
@@ -181,7 +158,7 @@ def draw_scene():
 
     # Tramo derecho
     glPushMatrix()
-    glTranslatef(100, 0, -90)
+    glTranslatef(100, 0, -100)
     glRotatef(-90, 0, 1, 0)
     muralla()
     glPopMatrix()
