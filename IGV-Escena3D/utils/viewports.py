@@ -97,7 +97,7 @@ def viewport_cabinet(xMin, xMax, yMin, yMax, dNear, dFar):
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)   # Se podría eliminar porque se usa el valor por defecto
     
     
-    igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
+    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
     
     #igv_utils.draw_text_3d("GABINETE", 0.0, -1.0, 0.0)
 
@@ -121,7 +121,7 @@ def viewport_ortho_front(xMin, xMax, yMin, yMax, dNear, dFar):
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)   # Se podría eliminar porque se usa el valor por defecto
     
     # Dibujo de los ejes y la casa
-    igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
+    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
         
     # Dibujo de una etiqueta  
     #igv_utils.draw_text_3d("VISTA FRONTAL", -1.0, -1.0, 0.0)
@@ -145,7 +145,7 @@ def viewport_ortho_rear(xMin, xMax, yMin, yMax, dNear, dFar):
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)
     
     # Dibujo de los ejes y la casa
-    igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
+    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
    
     # Dibujo de una etiqueta
     #igv_utils.draw_text_3d("VISTA POSTERIOR", 1.0, -1.0, 0.0)
@@ -169,7 +169,7 @@ def viewport_ortho_right(xMin, xMax, yMin, yMax, dNear, dFar):
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)
     
     # Dibujo de los ejes y la casa
-    igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
+    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
     
     # Dibujo de una etiqueta
     #igv_utils.draw_text_3d("VISTA LATERAL DERECHO", 0.0, -1.0, 2.0)
@@ -190,7 +190,7 @@ def viewport_ortho_left(xMin, xMax, yMin, yMax, dNear, dFar):
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)
     
     # Dibujo de los ejes y la casa
-    igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
+    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
     
     # Dibujo de una etiqueta
     #igv_utils.draw_text_3d("VISTA LATERAL IZQUIERDO", 0.0, -1.0, -2.0)
@@ -211,7 +211,7 @@ def viewport_ortho_top(xMin, xMax, yMin, yMax, dNear, dFar):
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)
     
     # Dibujo de los ejes y la casa
-    igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
+    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
     
     
     # Dibujo de una etiqueta
