@@ -221,7 +221,7 @@ def viewport_ortho_top(xMin, xMax, yMin, yMax, dNear, dFar):
 def viewport_perspective_sym_local(widthWindow, heightWindow):
     glMatrixMode(GL_PROJECTION)
     glLoadIdentity()
-    gluPerspective(45.0, widthWindow / heightWindow, 1.0, 600.0)
+    gluPerspective(45.0, widthWindow / heightWindow, 1.0, 1000.0)
     glMatrixMode(GL_MODELVIEW)
     glLoadIdentity()
     gluLookAt(
