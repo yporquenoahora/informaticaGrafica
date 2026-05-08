@@ -51,8 +51,6 @@ def config_viewports(width, height, num_viewports=1, rows=1):
 
             viewports_list.append([x_offset, y_offset, size, size])
 
-    #print(viewports_list)
-
 
 def set_viewport(index):    
     if index-1 < len(viewports_list):
@@ -62,7 +60,7 @@ def set_viewport(index):
         print("Índice de viewport no válido")
 
 
-def viewport_cabinet(xMin, xMax, yMin, yMax, dNear, dFar):
+def viewport_cabinet(xMin, xMax, yMin, yMax, dNear, dFar, axes = False):
  
     ###############################################################
     # PREPARACIÓN DE LA PROYECCIÓN - SE ESTUDIARÁ POSTERIORMENTE
@@ -96,16 +94,12 @@ def viewport_cabinet(xMin, xMax, yMin, yMax, dNear, dFar):
     x0 = 0.0;  y0 = 0.0;  z0 = 0.0;  xref = 0.0;  yref = 0.0;  zref = -1.0;  vx = 0.0;  vy = 1.0; vz = 0.0
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)   # Se podría eliminar porque se usa el valor por defecto
     
+    # Dibujo de los ejes
+    if axes:
+        igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, True)
     
-    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
-    
-    #igv_utils.draw_text_3d("GABINETE", 0.0, -1.0, 0.0)
 
-
-def viewport_ortho_front(xMin, xMax, yMin, yMax, dNear, dFar):
-    
-    # Definición del viewport
-    #glViewport(650, 500, 500, 500)   # glViewport(x_lower_left_corner, y_lower_left_corner, width, height)
+def viewport_ortho_front(xMin, xMax, yMin, yMax, dNear, dFar, axes = False):
     
     # Preparación de la proyección ortogonal
     glMatrixMode(GL_PROJECTION)
@@ -120,16 +114,12 @@ def viewport_ortho_front(xMin, xMax, yMin, yMax, dNear, dFar):
     x0 = 0.0;  y0 = 0.0;  z0 = 0.0;  xref = 0.0;  yref = 0.0;  zref = -1.0;  vx = 0.0;  vy = 1.0; vz = 0.0
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)   # Se podría eliminar porque se usa el valor por defecto
     
-    # Dibujo de los ejes y la casa
-    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
-        
-    # Dibujo de una etiqueta  
-    #igv_utils.draw_text_3d("VISTA FRONTAL", -1.0, -1.0, 0.0)
-
-def viewport_ortho_rear(xMin, xMax, yMin, yMax, dNear, dFar):
+    # Dibujo de los ejes
+    if axes:
+        igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, True)
     
-    # Definición del viewport
-    #glViewport(300,0,300,300)   # glViewport(x_lower_left_corner, y_lower_left_corner, width, height)
+
+def viewport_ortho_rear(xMin, xMax, yMin, yMax, dNear, dFar, axes = False):
     
     # Preparación de la proyección ortogonal
     glMatrixMode(GL_PROJECTION)
@@ -144,16 +134,11 @@ def viewport_ortho_rear(xMin, xMax, yMin, yMax, dNear, dFar):
     x0 = 0.0;  y0 = 0.0;  z0 = 0.0;  xref = 0.0;  yref = 0.0;  zref = 1.0;  vx = 0.0;  vy = 1.0; vz = 0.0
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)
     
-    # Dibujo de los ejes y la casa
-    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
-   
-    # Dibujo de una etiqueta
-    #igv_utils.draw_text_3d("VISTA POSTERIOR", 1.0, -1.0, 0.0)
+    # Dibujo de los ejes
+    if axes:
+        igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, True)
 
-def viewport_ortho_right(xMin, xMax, yMin, yMax, dNear, dFar):
-    
-    # Definición del viewport
-    #glViewport(600,300,300,300)   # glViewport(x_lower_left_corner, y_lower_left_corner, width, height)
+def viewport_ortho_right(xMin, xMax, yMin, yMax, dNear, dFar, axes = False):
     
     # Preparación de la proyección ortogonal
     glMatrixMode(GL_PROJECTION)
@@ -168,13 +153,11 @@ def viewport_ortho_right(xMin, xMax, yMin, yMax, dNear, dFar):
     x0 = 0.0;  y0 = 0.0;  z0 =0.0;  xref = -1;  yref = 0.0;  zref = 0.0;  vx = 0.0;  vy = 1.0; vz = 0.0
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)
     
-    # Dibujo de los ejes y la casa
-    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
-    
-    # Dibujo de una etiqueta
-    #igv_utils.draw_text_3d("VISTA LATERAL DERECHO", 0.0, -1.0, 2.0)
+    # Dibujo de los ejes
+    if axes:
+        igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, True)
 
-def viewport_ortho_left(xMin, xMax, yMin, yMax, dNear, dFar):
+def viewport_ortho_left(xMin, xMax, yMin, yMax, dNear, dFar, axes = False):
     
     # Preparación de la proyección ortogonal
     glMatrixMode(GL_PROJECTION)
@@ -189,13 +172,11 @@ def viewport_ortho_left(xMin, xMax, yMin, yMax, dNear, dFar):
     x0 = 0.0;  y0 = 0.0;  z0 =0.0;  xref = 1;  yref = 0.0;  zref = 0.0;  vx = 0.0;  vy = 1.0; vz = 0.0
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)
     
-    # Dibujo de los ejes y la casa
-    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
-    
-    # Dibujo de una etiqueta
-    #igv_utils.draw_text_3d("VISTA LATERAL IZQUIERDO", 0.0, -1.0, -2.0)
+    # Dibujo de los ejes
+    if axes:
+        igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, True)
 
-def viewport_ortho_top(xMin, xMax, yMin, yMax, dNear, dFar):
+def viewport_ortho_top(xMin, xMax, yMin, yMax, dNear, dFar, axes = False):
     
     # Definición del viewport    # Preparación de la proyección ortogonal
     glMatrixMode(GL_PROJECTION)
@@ -210,13 +191,9 @@ def viewport_ortho_top(xMin, xMax, yMin, yMax, dNear, dFar):
     x0 = 0.0;  y0 = 0.0;  z0 =0.0;  xref = 0.0;  yref = -1.0;  zref = 0.0;  vx = 0.0;  vy = 0.0; vz = 1
     gluLookAt(x0, y0, z0, xref, yref, zref, vx, vy, vz)
     
-    # Dibujo de los ejes y la casa
-    #igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, False)
-    
-    
-    # Dibujo de una etiqueta
-    #glColor3fv([1,0,0])
-    #igv_utils.draw_text_3d("VISTA PLANTA", 1.0, 0.0, 1.0)
+    # Dibujo de los ejes
+    if axes:
+        igv_utils.axes(xMin, xMax, yMin, yMax, dNear, dFar, True)
 
 def viewport_perspective_sym_local(widthWindow, heightWindow):
     glMatrixMode(GL_PROJECTION)

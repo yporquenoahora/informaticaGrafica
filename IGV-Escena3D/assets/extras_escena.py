@@ -84,7 +84,7 @@ def extras_escena():
     Solo el dragón.
     """
     glPushMatrix()
-    glTranslatef(28, 8, 26)
+    glTranslatef(60, 85, -60)
     glScalef(2.4, 2.4, 2.4)
     dragoncito_con_corbata()
     glPopMatrix()
