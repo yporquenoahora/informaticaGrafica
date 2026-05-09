@@ -1,11 +1,11 @@
 # Actividad grupal de Informática gráfica
 
 ## Integrantes: 
- ### 1
- ### 2
- ### 3
- ### 4
- ### 5
+ ### 1 AIDA MARQUEZ GONZÁLEZ
+ ### 2 ALBERTO RODRIGUEZ BERMUDEZ
+ ### 3 RAMSÉS BLANCO VELÁZQUEZ
+ ### 4 RAÚL DE LEÓN DE LA FUENTE
+ ### 5 XAVIER GOENAGA GURRUTXAGA
 
 
 ![1777979659913](image/README/1777979659913.png)
