@@ -32,11 +32,6 @@ def init_gl():
 
     glEnable(GL_DEPTH_TEST)                        # HABILITA COMPROBACIÓN DE PROFUNDIDAD EN EL DIBUJO           
 
-def draw_scene():
-    
-    width_grass = 120
-    tile = 10
-
 def draw_ground():
     width_grass = 110
     tile = 2
