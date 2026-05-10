@@ -33,7 +33,7 @@ def init_gl():
     glEnable(GL_DEPTH_TEST)                        # HABILITA COMPROBACIÓN DE PROFUNDIDAD EN EL DIBUJO           
 
 def draw_ground():
-    width_grass = 110
+    width_grass = 130
     tile = 2
 
     palette = [
@@ -46,6 +46,8 @@ def draw_ground():
 
     glPushMatrix()
 
+    offset = -5
+    glTranslatef(offset, 0, 0)
     for x in range(-width_grass, width_grass, tile):
         for z in range(-width_grass, width_grass, tile):
 
@@ -65,25 +67,25 @@ def draw_ground():
 
     # Frontal
     glPushMatrix()
-    glTranslatef(-width_grass, -2, width_grass - 1)
+    glTranslatef(-width_grass + offset, -2, width_grass - 1)
     draw.solid_ortho(2 * width_grass, 2, 1, borde_color)
     glPopMatrix()
 
     # Trasero
     glPushMatrix()
-    glTranslatef(-width_grass, -2, -width_grass)
+    glTranslatef(-width_grass + offset, -2, -width_grass)
     draw.solid_ortho(2 * width_grass, 2, 1, borde_color)
     glPopMatrix()
 
     # Izquierdo
     glPushMatrix()
-    glTranslatef(-width_grass, -2, -width_grass)
+    glTranslatef(-width_grass + offset, -2, -width_grass)
     draw.solid_ortho(1, 2, 2 * width_grass, borde_color)
     glPopMatrix()
 
     # Derecho
     glPushMatrix()
-    glTranslatef(width_grass - 1, -2, -width_grass)
+    glTranslatef(width_grass - 1 + offset, -2, -width_grass)
     draw.solid_ortho(1, 2, 2 * width_grass, borde_color)
     glPopMatrix()
 
@@ -174,10 +176,10 @@ def draw_scene():
     muralla()
     glPopMatrix()
 
-    # Foso detrás de la muralla trasera
+    # Foso delante de la muralla frontal
     glPushMatrix()
-    glTranslatef(-90, -1, 105)
-    draw.solid_ortho(180, 2, 50, colors.water_range)
+    glTranslatef(-100, -1, 105)
+    draw.solid_ortho(190, 2, 50, colors.water_range)
     glPopMatrix()
 
     # Puente/pasarela sobre el foso (centrado en la puerta trasera)
@@ -188,12 +190,12 @@ def draw_scene():
 
     # Antorchas en el puente - lado izquierdo
     glPushMatrix()
-    glTranslatef(-13, 2, 107)
+    glTranslatef(-15, 2, 107)
     antorcha()
     glPopMatrix()
 
     glPushMatrix()
-    glTranslatef(-13, 2, 148)
+    glTranslatef(-15, 2, 148)
     antorcha()
     glPopMatrix()
 
@@ -211,29 +213,36 @@ def draw_scene():
 def display():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
-    axes_length = 170
+    axes_length = 190
     xMin = yMin = zMin = -axes_length
     xMax = yMax = zMax = axes_length
     dNear = -zMax
     dFar = -zMin
+    
+    # Compilamos la escena una vez para mejorar el rendimiento al dibujarla en cada viewport
+    scene_compile = glGenLists(1)
+    glNewList(scene_compile, GL_COMPILE)
+    draw_scene()
+    glEndList()
 
+    # Configuramos los 4 viewports
     vp.config_viewports(widthWindow, heightWindow, 4, 2)
 
     vp.set_viewport(1)
     vp.viewport_cabinet(xMin, xMax, yMin, yMax, dNear, dFar)
-    draw_scene()
+    glCallList(scene_compile)
 
     vp.set_viewport(2)
     vp.viewport_ortho_left(xMin, xMax, yMin, yMax, dNear, dFar)
-    draw_scene()
+    glCallList(scene_compile)
 
     vp.set_viewport(3)
     vp.viewport_ortho_front(xMin, xMax, yMin, yMax, dNear, dFar)
-    draw_scene()
+    glCallList(scene_compile)
 
     vp.set_viewport(4)
     vp.viewport_perspective_sym_local( widthWindow, heightWindow )
-    draw_scene()
+    glCallList(scene_compile)
 
     glutSwapBuffers()
 
